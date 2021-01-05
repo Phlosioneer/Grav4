@@ -1,0 +1,13 @@
+{
+  "name": "grav4",
+  "version": "1.0.0",
+  "description": "Connect 4 but with gravity",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server ./web",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}
