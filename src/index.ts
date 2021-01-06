@@ -1,6 +1,18 @@
 
 initCanvas();
 
+/**
+ * Returns the given value `t` and asserts it is non-null.
+ * If it is in fact null, throws `e` as an exception.
+ */
+function expect<T>(t: T | null, e: any): T {
+    if (t === null || t === undefined) {
+        throw e;
+    } else {
+        return t;
+    }
+}
+
 function initCanvas() {
     const canvasHtml = document.getElementById("canvas");
     if (!canvasHtml) {
