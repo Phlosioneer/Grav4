@@ -64,8 +64,8 @@ function initCanvas(): [HTMLCanvasElement, CanvasRenderingContext2D] {
     const canvasHtml = document.getElementById("canvas");
     expect(canvasHtml, "Canvas not found");
     const canvas = <HTMLCanvasElement>canvasHtml;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
     
     const context = canvas.getContext("2d");
     expect(context, "2d context unavailable");

@@ -1,0 +1,19 @@
+startGameLoop((timeStamp: number) => {
+    context.fillText("Heehee", 10, 10);
+});
+
+/**
+ * Endlessly runs provided callback once per frame, where the framerate
+ * is managed by window's requestAnimationFrame
+ */
+function startGameLoop(render: (timeStamp: number) => void) {
+    function loop(timeStamp: number) {
+        render(timeStamp);
+
+        window.requestAnimationFrame(loop);
+    }
+
+    window.requestAnimationFrame(loop);
+}
+
+//--------------------
