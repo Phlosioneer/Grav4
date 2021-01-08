@@ -4,7 +4,7 @@
         "noImplicitAny": true,
         "strict": true,
         "sourceMap": true,
-        "outDir": "web"
+        "outDir": "web",
     },
     "include": ["src/**/*"]
 }

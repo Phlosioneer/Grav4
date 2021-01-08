@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "npx http-server ./web",
-    "build": "tsc"
+    "build": "tsc",
+    "build-watch": "tsc --watch",
+    "dev-windows": "\"node_modules\\.bin\\concurrently\" --kill-others \"npm:start\" \"npm:build-watch\"",
+    "dev-linux": "node_modules/.bin/concurrently --kill-others \"npm:start\" \"npm:build-watch\""
   },
   "dependencies": {
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "concurrently": "^5.3.0"
   }
 }
