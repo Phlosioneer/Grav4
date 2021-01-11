@@ -4,14 +4,16 @@
   "description": "Connect 4 but with gravity",
   "main": "index.js",
   "scripts": {
-    "start": "npx http-server ./web",
+    "start": "node host.js",
     "build": "tsc",
     "build-watch": "tsc --watch",
     "dev-windows": "\"node_modules\\.bin\\concurrently\" --kill-others \"npm:start\" \"npm:build-watch\"",
     "dev-linux": "node_modules/.bin/concurrently --kill-others \"npm:start\" \"npm:build-watch\""
   },
   "dependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
     "http-server": "^0.12.3",
-    "concurrently": "^5.3.0"
+    "requirejs": "^2.3.6"
   }
 }

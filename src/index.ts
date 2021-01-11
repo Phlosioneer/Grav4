@@ -1,24 +1,15 @@
+import { BoundingBox, squareFit } from "gridBoxes";
 
 const [canvas, context] = initCanvas();
 
 
-class BoundingBox {
-    // X, Y are from the top-left of the canvas.
-    x: number;
-    y: number;
-    // Width and height are always positive.
-    width: number;
-    height: number;
-    
-    constructor(x: number, y: number, width: number, height: number) {
-        this.x = x;
-        this.y = y;
-        this.width = Math.abs(width);
-        this.height = Math.abs(height);
-    }
-}
 
-drawGrid(new BoundingBox(20,20,canvas.width - 40, canvas.height - 40), 10, 10);
+
+
+
+drawGrid(squareFit(new BoundingBox(20,20,canvas.width - 40, canvas.height - 40)), 10, 10);
+
+
 
 /**
  * Returns the given value `t` and asserts it is non-null.
@@ -61,17 +52,21 @@ function drawGrid(bounds: BoundingBox, columns: number, rows: number) {
 }
 
 function initCanvas(): [HTMLCanvasElement, CanvasRenderingContext2D] {
+    
     const canvasHtml = document.getElementById("canvas");
     expect(canvasHtml, "Canvas not found");
     const canvas = <HTMLCanvasElement>canvasHtml;
-    canvas.width = document.documentElement.clientWidth;
-    canvas.height = document.documentElement.clientHeight;
     
+    resizeCanvas(canvas);
     const context = canvas.getContext("2d");
     expect(context, "2d context unavailable");
     
-    context.fillRect(10,10,20,30);
+    window.onresize = () => resizeCanvas(canvas);
     return [canvas, context];
+}
 
+function resizeCanvas(canvas: HTMLCanvasElement) {
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
 }
 

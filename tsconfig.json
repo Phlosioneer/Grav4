@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
+        "target": "ES5",
+        "module": "AMD",
         "alwaysStrict": true,
         "noImplicitThis": true,
         "strictPropertyInitialization": true,
         "baseUrl": "src",
-        "module": "CommonJS",
         "strict": true,
-        "sourceMap": true,
         "outDir": "web",
+        "inlineSourceMap": true
     },
     "include": ["src/**/*"]
 }
