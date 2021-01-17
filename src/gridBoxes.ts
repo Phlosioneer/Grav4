@@ -28,5 +28,5 @@ export function toGridCoords(bbox: BoundingBox,
     pos: {x: number, y:number}): { column: number, row: number } {
         const columnWidth = bbox.width / columns;
         const rowHeight = bbox.height / rows;
-        return { column: pos.x / columnWidth, row: pos.y / rowHeight };
+        return { column: Math.floor(pos.x / columnWidth), row: Math.floor(pos.y / rowHeight) };
 }
