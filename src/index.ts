@@ -1,15 +1,27 @@
-import { BoundingBox, squareFit } from "gridBoxes";
+import { BoundingBox, squareFit, GameBoard, ConcreteGrid, clockwise } from "gridBoxes";
 
 const [canvas, context] = initCanvas();
 
 
 
 
+const gameBoard: GameBoard = new GameBoard(squareFit(new BoundingBox(40,40,canvas.width - 80, canvas.height - 80)), 10, 10);
+gameBoard.hoveredSquare = { row: 2, column: 2 };
 
+gameBoard.draw(context);
 
-drawGrid(squareFit(new BoundingBox(20,20,canvas.width - 40, canvas.height - 40)), 10, 10);
+document.onmousemove = (e) => {
+    gameBoard.hover(e.clientX, e.clientY);
+    context.clearRect(0,0,canvas.width,canvas.height);
+    gameBoard.draw(context);
+};
 
-
+document.onkeydown = (e) => {
+    console.log(e.key);
+    if (e.key === " ") {
+        gameBoard.aimDirection = clockwise(gameBoard.aimDirection);
+    }
+}
 
 /**
  * Returns the given value `t` and asserts it is non-null.
@@ -30,24 +42,6 @@ function expect<T>(t: T | null, error?: Error | string | null, context?: object 
             Object.keys(context).forEach(key => e[key] = (<any>context)[key]);
         }
         throw e;
-    }
-}
-
-function drawGrid(bounds: BoundingBox, columns: number, rows: number) {
-    const columnWidth = bounds.width / columns;
-    const rowHeight = bounds.height / rows;
-    for (let xIndex = 0; xIndex <= columns; xIndex++) {
-        context.beginPath();
-        context.moveTo(bounds.x + xIndex * columnWidth, bounds.y);
-        context.lineTo(bounds.x + xIndex * columnWidth, bounds.y + bounds.height);
-        context.stroke();
-    }
-
-    for (let yIndex = 0; yIndex <= rows; yIndex++) {
-        context.beginPath();
-        context.moveTo(bounds.x, bounds.y + yIndex * rowHeight);
-        context.lineTo(bounds.x + bounds.width, bounds.y + yIndex * rowHeight);
-        context.stroke();
     }
 }
 
